@@ -1,1 +1,3 @@
-require('./agents')
+require('./src/sinks')
+require('./src/agents')
+require('./src/agent-groups')
