@@ -1,4 +1,4 @@
-// Creates Agents
+// Creates Agent Groups
 
 const faker = require('faker');
 const axios = require("axios");
@@ -7,8 +7,6 @@ const NUMBER_OF_AGENT_GROUPS = faker.datatype.number({
   'min': 10,
   'max': 50
 });
-
-const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzEyMzE1MzQsImlhdCI6MTYzMTE5NTUzNCwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiMzRmM2RhOWItNjQ3Yy00ZjQ5LTkxZDgtMzViZmQ0OGFhODU4IiwidHlwZSI6MH0.gNUgjDHCQpZDcXoGbwCGI3-yfHTT_HZ6LlHICjpoJG8';
 
 const TAGS = {
   region: ['br', 'eu', 'us'],
@@ -25,7 +23,7 @@ let axiosConfig = {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     "Access-Control-Allow-Origin": "*",
-    'Authorization': AUTH_TOKEN,
+    'Authorization': process.env.AUTH_TOKEN,
   }
 };
 
@@ -47,22 +45,10 @@ for (let i = 0; i < NUMBER_OF_AGENT_GROUPS; i++) {
     tags: tagsMap
   });
 
-  axios.post("http://localhost:80/api/v1/agent_groups", JSON.stringify(agentGroup), axiosConfig)
+  axios.post(`${process.env.FULL_PATH}/agent_groups`, JSON.stringify(agentGroup), axiosConfig)
     .then(res => {
       return console.log(res);
-    }).catch(err => {
+    }).catch(e => {
     errors.push(e.error);
-  })
-}
-
-if (errors.length > 0) {
-  for (let i = 0; i < errors.length; i++) {
-    console.log("##################v");
-    console.log(errors[i]);
-  }
-  console.log("##################v");
-  console.log(`There were ${errors.length} failed attempts to create an agent group`);
-
-} else {
-  console.log(`Succesffully created ${NUMBER_OF_AGENT_GROUPS} agent groups`);
+  });
 }

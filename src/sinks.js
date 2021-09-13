@@ -1,4 +1,4 @@
-// Creates Agents
+// Creates Sinks
 
 const faker = require('faker');
 const axios = require("axios");
@@ -7,8 +7,6 @@ const NUMBER_OF_SINKS = faker.datatype.number({
   'min': 50,
   'max': 100
 });
-
-const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzEyMzE1MzQsImlhdCI6MTYzMTE5NTUzNCwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiMzRmM2RhOWItNjQ3Yy00ZjQ5LTkxZDgtMzViZmQ0OGFhODU4IiwidHlwZSI6MH0.gNUgjDHCQpZDcXoGbwCGI3-yfHTT_HZ6LlHICjpoJG8';
 
 const BACKENDS = {
   prometheus: 'prometheus',
@@ -36,7 +34,7 @@ let axiosConfig = {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     "Access-Control-Allow-Origin": "*",
-    'Authorization': AUTH_TOKEN,
+    'Authorization': process.env.AUTH_TOKEN,
   }
 };
 
@@ -64,10 +62,10 @@ for (let i = 0; i < NUMBER_OF_SINKS; i++) {
     tags: tagsMap
   });
   console.log(sink);
-  axios.post("http://localhost:80/api/v1/sinks", JSON.stringify(sink), axiosConfig)
+  axios.post(`${process.env.FULL_PATH}/sinks`, JSON.stringify(sink), axiosConfig)
     .then(res => {
       return console.log(res);
-    }).catch(err => {
+    }).catch(e => {
     errors.push(e.error);
   })
 }
