@@ -8,8 +8,6 @@ const NUMBER_OF_AGENTS = faker.datatype.number({
   'max': 50
 });
 
-const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzEyMzE1MzQsImlhdCI6MTYzMTE5NTUzNCwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiMzRmM2RhOWItNjQ3Yy00ZjQ5LTkxZDgtMzViZmQ0OGFhODU4IiwidHlwZSI6MH0.gNUgjDHCQpZDcXoGbwCGI3-yfHTT_HZ6LlHICjpoJG8';
-
 const TAGS = {
   region: ['us:east', 'us:west', 'vt', 'br'],
   node_type: ['dns'],
@@ -26,7 +24,7 @@ let axiosConfig = {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     "Access-Control-Allow-Origin": "*",
-    'Authorization': AUTH_TOKEN,
+    'Authorization': process.env.AUTH_TOKEN,
   }
 };
 
@@ -48,10 +46,10 @@ for (let i = 0; i < NUMBER_OF_AGENTS; i++) {
     orb_tags: tagsMap
   });
 
-  axios.post("http://localhost:80/api/v1/agents", JSON.stringify(agent), axiosConfig)
+  axios.post(`${process.env.FULL_PATH}/agents`, JSON.stringify(agent), axiosConfig)
     .then(res => {
       return console.log(res);
-    }).catch(err => {
+    }).catch(e => {
     errors.push(e.error);
   })
 }
@@ -67,4 +65,3 @@ if (errors.length > 0) {
 } else {
   console.log(`Succesffully created ${NUMBER_OF_AGENTS} agents`);
 }
-
