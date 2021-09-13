@@ -11,9 +11,11 @@ const NUMBER_OF_AGENTS = faker.datatype.number({
 const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzEyMzE1MzQsImlhdCI6MTYzMTE5NTUzNCwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiMzRmM2RhOWItNjQ3Yy00ZjQ5LTkxZDgtMzViZmQ0OGFhODU4IiwidHlwZSI6MH0.gNUgjDHCQpZDcXoGbwCGI3-yfHTT_HZ6LlHICjpoJG8';
 
 const TAGS = {
-  region: ['br', 'eu', 'us'],
+  region: ['us:east', 'us:west', 'vt', 'br'],
   node_type: ['dns'],
 };
+
+const LOCATIONS = ['40.7053415,-74.013236', '37.7920932,-122.4022361', '21.0269054,105.8478266', '-27.5707056,-48.7504617'];
 
 const shape = {
   name: "my-agent-10",
@@ -39,6 +41,7 @@ for (let i = 0; i < NUMBER_OF_AGENTS; i++) {
     const key = tagKeys[j];
     tagsMap[key] = TAGS[key][faker.datatype.number({min: 0, max: TAGS[key].length - 1})];
   }
+  tags['location'] = LOCATIONS[faker.datatype.number({min: 0, max: LOCATIONS.length - 1})];
 
   const agent = Object.assign({}, shape, {
     name: `agent-${faker.name.firstName()}-${i}`.toLowerCase(),
