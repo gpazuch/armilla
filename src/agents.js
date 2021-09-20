@@ -8,7 +8,8 @@ const NUMBER_OF_AGENTS = faker.datatype.number({
   'max': 50
 });
 
-const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE5MzU2NzksImlhdCI6MTYzMTg5OTY3OSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.gUD23cCdQgNtfcRb0fmdYt-4l2ff3cMfyopC2elr9Jg';
+// const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE5MzU2NzksImlhdCI6MTYzMTg5OTY3OSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.gUD23cCdQgNtfcRb0fmdYt-4l2ff3cMfyopC2elr9Jg';
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
 const TAGS = {
   region: ['us:east', 'us:west', 'vt', 'br'],
@@ -51,12 +52,7 @@ for ( let i = 0; i < NUMBER_OF_AGENTS; i++ ) {
     orb_tags: tagsMap
   });
 
-  p.push(axios.post('http://localhost:80/api/v1/agents', JSON.stringify(agent), axiosConfig)
-    .then(res => {
-      return console.log(res);
-    }).catch(err => {
-      errors.push(e.error);
-    }));
+  p.push(axios.post('http://localhost:80/api/v1/agents', JSON.stringify(agent), axiosConfig));
 }
 
 !!errors && console.log(errors);

@@ -1,19 +1,37 @@
-const sinks = require('./src/sinks');
+const system = require('system');
+const process = require('process');
 
-const agents = require('./src/agents');
+require('dotenv').config();
 
-const agentGroups = require('./src/agent-groups');
+// const getToken = require('./src/auth.js');
+const populate = () => Promise.allSettled([
+  require('./src/sinks'),
+  require('./src/agents'),
+  require('./src/agent-groups'),
+  require('./src/agent-policy'),
+]);
+const run = async () => {
+  // await getToken().then(res => {
+  //   if ( res['token'] ) {
+  //     process.env.AUTH_TOKEN = res['token'];
+  //   }
+  //   throw new Error(`Authentication Error ${ res }`);
+  // }).catch(e => {
+  //   throw new Error(`Authentication Error ${ e }`);
+  // });
 
-const agentPolicy = require('./src/agent-policy');
+  return populate();
+};
 
-Promise.all([sinks, agents, agentGroups, agentPolicy])
-  .then(
-    () => console.log('success'),
-    (e) => {
-      console.log(e);
-      process.exitCode = 1;
-    })
-  .finally(() => {
-    console.log('finished');
-    process.exitCode = 0;
-  });
+let responses = { resolved: [], rejected: [], errors: [] };
+try {
+  run()
+    .then(
+      (resolved) => responses.resolved.push(resolved),
+      (rejected) => responses.rejected.push(rejected))
+    .catch(e => responses.push(e))
+    .finally(() => console.log({ responses }));
+} catch ( e ) {
+  console.log(e);
+  system.exitCode = 1;
+}

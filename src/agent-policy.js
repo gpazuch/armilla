@@ -8,6 +8,9 @@ const NUMBER_OF_POLICIES = faker.datatype.number({
   'max': 10
 });
 
+// const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzIwMTk0OTEsImlhdCI6MTYzMTk4MzQ5MSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.xSwa-spmDJUOAkeD--83P_HaYcRcD2LVDnVfWBjspbE';
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
+
 const BACKENDS = {
   pktvisor: 'pktvisor',
 };
@@ -36,7 +39,7 @@ let axiosConfig = {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     'Access-Control-Allow-Origin': '*',
-    'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzIwMTk0OTEsImlhdCI6MTYzMTk4MzQ5MSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.xSwa-spmDJUOAkeD--83P_HaYcRcD2LVDnVfWBjspbE',
+    'Authorization': AUTH_TOKEN,
   }
 };
 
@@ -66,10 +69,7 @@ for ( let i = 0; i < NUMBER_OF_POLICIES; i++ ) {
     tags: tagsMap
   });
 
-  p.push(axios.post(`http://localhost:80/api/v1/policies/agent`, JSON.stringify(policy), axiosConfig)
-    .then().catch(e => errors.push(e.error)));
+  p.push(axios.post(`http://localhost:80/api/v1/policies/agent`, JSON.stringify(policy), axiosConfig));
 }
-
-!!errors && console.log(errors);
 
 module.exports = p;

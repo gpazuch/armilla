@@ -8,7 +8,8 @@ const NUMBER_OF_AGENT_GROUPS = faker.datatype.number({
   'max': 50
 });
 
-const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE5MzU2NzksImlhdCI6MTYzMTg5OTY3OSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.gUD23cCdQgNtfcRb0fmdYt-4l2ff3cMfyopC2elr9Jg';
+// const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE5MzU2NzksImlhdCI6MTYzMTg5OTY3OSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.gUD23cCdQgNtfcRb0fmdYt-4l2ff3cMfyopC2elr9Jg';
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
 const TAGS = {
   region: ['br', 'eu', 'us'],
@@ -49,12 +50,7 @@ for ( let i = 0; i < NUMBER_OF_AGENT_GROUPS; i++ ) {
     tags: tagsMap
   });
 
-  p.push(axios.post('http://localhost:80/api/v1/agent_groups', JSON.stringify(agentGroup), axiosConfig)
-    .then(res => {
-      return console.log(res);
-    }).catch(err => {
-      errors.push(e.error);
-    }));
+  p.push(axios.post('http://localhost:80/api/v1/agent_groups', JSON.stringify(agentGroup), axiosConfig));
 }
 
 !!errors && console.log(errors);
