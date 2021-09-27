@@ -1,4 +1,4 @@
-// Creates Agents
+// Creates Sinks
 
 const faker = require('faker');
 const axios = require('axios');
@@ -10,7 +10,6 @@ const NUMBER_OF_SINKS = faker.datatype.number({
 
 // const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE5MzU2NzksImlhdCI6MTYzMTg5OTY3OSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.gUD23cCdQgNtfcRb0fmdYt-4l2ff3cMfyopC2elr9Jg';
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
-
 const BACKENDS = {
   prometheus: 'prometheus',
 };
@@ -37,7 +36,7 @@ let axiosConfig = {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     'Access-Control-Allow-Origin': '*',
-    'Authorization': AUTH_TOKEN,
+    'Authorization': process.env.AUTH_TOKEN,
   }
 };
 
