@@ -3,14 +3,8 @@
   "version": "1.0.0",
   "description": "util scripts for orb",
   "main": "index.js",
-  "contributors": [
-    "gpazuch",
-    "rovaris"
-  ],
-  "licenses": [{
-      "type": "MPL-2.0",
-      "url": "https://www.mozilla.org/en-US/MPL/2.0/"
-   }],
+  "author": "gpazuch",
+  "license": "mpl-2.0",
   "private": true,
   "dependencies": {
     "axios": "^0.21.4",
@@ -20,12 +14,6 @@
     "system": "^2.0.1"
   },
   "scripts": {
-    "start": "node -r dotenv/config index.js"
-  },
-  "devDependencies": {
-    "dotenv": "^10.0.0"
-  },
-  "optionalDependencies": {
-    "yarn": "^1.22.11"
+    "start": "node index.js"
   }
 }

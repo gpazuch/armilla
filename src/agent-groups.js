@@ -1,4 +1,4 @@
-// Creates Agent Groups
+// Creates Agents
 
 const faker = require('faker');
 const axios = require('axios');
@@ -10,6 +10,7 @@ const NUMBER_OF_AGENT_GROUPS = faker.datatype.number({
 
 // const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE5MzU2NzksImlhdCI6MTYzMTg5OTY3OSwiaXNzIjoibWFpbmZsdXguYXV0aCIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNzdWVyX2lkIjoiNjhlZTU4NzMtNGM0MC00OTFhLTllOGItZTk3NDUyNGNhNzJmIiwidHlwZSI6MH0.gUD23cCdQgNtfcRb0fmdYt-4l2ff3cMfyopC2elr9Jg';
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
+
 const TAGS = {
   region: ['br', 'eu', 'us'],
   node_type: ['dns'],
@@ -25,7 +26,7 @@ let axiosConfig = {
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     'Access-Control-Allow-Origin': '*',
-    'Authorization': process.env.AUTH_TOKEN,
+    'Authorization': AUTH_TOKEN,
   }
 };
 
@@ -53,4 +54,5 @@ for ( let i = 0; i < NUMBER_OF_AGENT_GROUPS; i++ ) {
 }
 
 !!errors && console.log(errors);
+
 module.exports = p;
