@@ -14,7 +14,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.21.4",
-    "faker": "^5.5.3"
+    "dotenv": "^10.0.0",
+    "faker": "^5.5.3",
+    "process": "^0.11.10",
+    "system": "^2.0.1"
   },
   "scripts": {
     "start": "node -r dotenv/config index.js"
