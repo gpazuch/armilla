@@ -1,8 +1,12 @@
 # Tooling scripts for [ORB-Observability Platform](https://github.com/ns1labs/orb) development and demonstration.
 
-This repository contains a node application that inserts random data to your local ORB instance.
+This repository contains a node application that retrieves an auth token and inserts random data to your local ORB instance.
 
->Currently supported entities: Sinks, Agents & Agent Groups.
+>Currently supported entities: 
+>* Sinks
+>* Agents
+>* Agent Groups
+>* Agent Policies
 
 
 ## Setup
