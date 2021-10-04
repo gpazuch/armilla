@@ -32,6 +32,5 @@ Please feel free to create pull-requests and start discussions on how we can imp
 
 ## Acknowledgements
 
-Special thanks to
-*[rovaris](https://github.com/rovaris) 
-*[iatdaitan](https://github.com/iatdaitan)
+* [rovaris](https://github.com/rovaris)   
+* [iatdaitan](https://github.com/iatdaitan)  
