@@ -7,6 +7,9 @@ This repository contains a node application that retrieves an auth token and ins
 >* Agents
 >* Agent Groups
 >* Agent Policies
+>
+>Future:
+>* Datasets
 
 
 ## Setup
@@ -29,4 +32,6 @@ Please feel free to create pull-requests and start discussions on how we can imp
 
 ## Acknowledgements
 
-Special thanks to [rovaris](https://github.com/rovaris) for the support and contributions to this initiative.
+Special thanks to
+*[rovaris](https://github.com/rovaris) 
+*[iatdaitan](https://github.com/iatdaitan)
