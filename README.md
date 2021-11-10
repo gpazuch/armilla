@@ -1,4 +1,5 @@
-# Tooling scripts for [ORB-Observability Platform](https://github.com/ns1labs/orb) development and demonstration.
+# Armilla
+## Tooling scripts for [ORB-Observability Platform](https://github.com/ns1labs/orb) development and demonstration.
 
 This repository contains a node application that retrieves an auth token and inserts random data to your local ORB instance.
 
