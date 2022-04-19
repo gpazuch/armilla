@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Login Information</mat-card-title>
@@ -8,7 +8,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="email@example.com" formControlName="email">
-            <mat-error *ngIf="addressForm.controls['email'].hasError('required')">
+            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
               Email is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -18,12 +18,13 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Password" formControlName="password">
-            <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
               Password is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
       </div>
+    </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
