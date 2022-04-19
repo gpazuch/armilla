@@ -13,27 +13,27 @@
 <div class="content" role="main">
   <input type="hidden" #selection>
   <div class="card-container">
-    <button class="card card-small" (click)="selection.value = 'token'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'token'" tabindex="0" routerLink="./token">
       <span>Retrieve Auth Token</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'agent'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'agent'" tabindex="0" routerLink="./agent">
       <span>Create Agents</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'group'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'group'" tabindex="0" routerLink="./group">
       <span>Create Agent Groups</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'policy'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'policy'" tabindex="0" routerLink="./policy">
       <span>Create Policies</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'sink'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'sink'" tabindex="0" routerLink="./sink">
       <span>Create Sinks</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'dataset'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'dataset'" tabindex="0" routerLink="./dataset">
       <span>Create Datasets</span>
     </button>
   </div>
