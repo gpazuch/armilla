@@ -1,27 +1,45 @@
 # Armilla
+## Tooling scripts for [ORB-Observability Platform](https://github.com/ns1labs/orb) development, demonstration and observation.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+This repository contains an angular app that retrieves an auth token and inserts random data to your local ORB instance at large numbers.
 
-## Development server
+It relies on [Faker](https://github.com/faker-js/faker) for data generation.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+>Currently supported entities: 
+> * Login / Auth Token Retrieval
+> * Agent
 
-## Code scaffolding
+>Future:
+> * Batch Agent Provisioning Command download
+> * Agent Groups
+> * Agent Policies
+> * Sinks
+> * Datasets
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Setup
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```sh
+git clone git@github.com:gpazuch/orb-scripts.git;
+cd orb-scripts;
+npm install;
+```
 
-## Running unit tests
+## Usage
+```sh
+npm run start;
+## open your browser on http://localhost:4300
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Agent Generation Screen](github/agent_generator.webp?raw=true "Agent")
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Contributions
 
-## Further help
+Please feel free to create pull-requests and start discussions on how we can improve and extend this little utility app.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Acknowledgements
+
+* [rovaris](https://github.com/rovaris)   
+* [iatdaitan](https://github.com/iatdaitan)  
