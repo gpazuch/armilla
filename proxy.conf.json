@@ -3,5 +3,55 @@
     "target": "http://localhost:80/api/v1",
     "secure": false,
     "changeOrigin": true
+  },
+  "/features/*": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/sinks/*": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/agents/*": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/agent_groups/*": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/policies/agent/*": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/policies/dataset/*": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/agents/backends/*": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/agents/backends/taps": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/agents/backends/handlers": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/agents/backends/inputs": {
+    "target": "http://localhost:80/api/v1",
+    "secure": false,
+    "changeOrigin": true
   }
 }

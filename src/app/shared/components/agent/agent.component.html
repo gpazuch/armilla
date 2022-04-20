@@ -8,7 +8,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input #name matInput placeholder="Name" formControlName="name">
-            <mat-hint align="start">{{ getHint(name.value) }}</mat-hint>
+            <mat-hint align="end">{{ getHint(name.value) }}</mat-hint>
             <mat-error *ngIf="agentForm.controls['name'].hasError('required')">
               Name is <strong>required</strong>
             </mat-error>
@@ -19,7 +19,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <textarea #tags matInput placeholder="Tags" formControlName="tags"></textarea>
-            <mat-hint align="start">{{ getHint(tags.value) }}</mat-hint>
+            <mat-hint align="end">{{ getHint(tags.value) }}</mat-hint>
             <mat-error *ngIf="agentForm.controls['tags'].hasError('required')">
               Tags is <strong>required</strong>
             </mat-error>
