@@ -1,5 +1,5 @@
 <form [formGroup]="agentForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
+  <mat-card class="gen-card">
     <mat-card-header>
       <mat-card-title>Agent Information</mat-card-title>
     </mat-card-header>
@@ -7,14 +7,19 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Name" formControlName="name">
+            <input #name matInput placeholder="Name" formControlName="name">
+            <mat-hint align="start">{{ getHint(name.value) }}</mat-hint>
+            <mat-error *ngIf="agentForm.controls['name'].hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Tags" formControlName="tags"></textarea>
+            <textarea #tags matInput placeholder="Tags" formControlName="tags"></textarea>
+            <mat-hint align="start">{{ getHint(tags.value) }}</mat-hint>
             <mat-error *ngIf="agentForm.controls['tags'].hasError('required')">
               Tags is <strong>required</strong>
             </mat-error>
@@ -23,8 +28,8 @@
       </div>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="1" formControlName="agentCount"></textarea>
+          <mat-form-field>
+            <input #count matInput placeholder="# of Agents to Generate" formControlName="agentCount">
             <mat-error *ngIf="agentForm.controls['agentCount'].hasError('required')">
               Agent Count is <strong>required</strong>
             </mat-error>
@@ -33,7 +38,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit">Generate {{ count.value }} Agents</button>
     </mat-card-actions>
   </mat-card>
 </form>

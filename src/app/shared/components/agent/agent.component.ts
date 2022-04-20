@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AgentService} from '../../services/agent.service';
 import faker from "@faker-js/faker";
+import { NameService } from '../../services/name.service';
 
 @Component({
   selector: 'app-agent',
@@ -10,18 +11,23 @@ import faker from "@faker-js/faker";
 })
 export class AgentComponent {
   agentForm = this.fb.group({
-    name: [null, Validators.required],
-    tags: [null, Validators.required],
+    name: ['{{name.firstName}}_{{name.lastName}}', Validators.required],
+    tags: ['{{name.firstName}}: {{name.lastName}}', Validators.required],
     agentCount: [5, Validators.required],
   });
 
   constructor(
       private fb: FormBuilder,
       private agent: AgentService,
+      private names: NameService,
   ) {
   }
 
-  makeAgent(name, tags) {
+  getHint(expr: string) {
+    return this.names.randomName(expr);
+  }
+
+  makeAgent(name: string, tags: string) {
     return {name: faker.fake(name), tags: faker.fake(tags)};
   }
 
