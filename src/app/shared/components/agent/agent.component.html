@@ -8,8 +8,15 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Name" formControlName="name">
-            <mat-error *ngIf="agentForm.controls['name'].hasError('required')">
-              Name is <strong>required</strong>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Tags" formControlName="tags"></textarea>
+            <mat-error *ngIf="agentForm.controls['tags'].hasError('required')">
+              Tags is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -17,17 +24,9 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Tag Key" formControlName="tagkey"></textarea>
-            <mat-error *ngIf="agentForm.controls['tagkey'].hasError('required')">
-              Tag Key is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="Tag Value" formControlName="tagvalue"></textarea>
-            <mat-error *ngIf="agentForm.controls['tagvalue'].hasError('required')">
-              Tag Value is <strong>required</strong>
+            <textarea matInput placeholder="1" formControlName="agentCount"></textarea>
+            <mat-error *ngIf="agentForm.controls['agentCount'].hasError('required')">
+              Agent Count is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
