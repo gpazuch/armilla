@@ -1,4 +1,4 @@
-<form [formGroup]="agentForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="gen-card">
     <mat-card-header>
       <mat-card-title>Agent Information</mat-card-title>
@@ -9,7 +9,7 @@
           <mat-form-field class="full-width">
             <input #name matInput placeholder="Name" formControlName="name">
             <mat-hint align="end">{{ getHint(name.value) }}</mat-hint>
-            <mat-error *ngIf="agentForm.controls['name'].hasError('required')">
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
               Name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -20,7 +20,7 @@
           <mat-form-field class="full-width">
             <textarea #tags matInput placeholder="Tags" formControlName="tags"></textarea>
             <mat-hint align="end">{{ getHint(tags.value) }}</mat-hint>
-            <mat-error *ngIf="agentForm.controls['tags'].hasError('required')">
+            <mat-error *ngIf="form.controls['tags'].hasError('required')">
               Tags is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -29,8 +29,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field>
-            <input #count matInput placeholder="# of Agents to Generate" formControlName="agentCount">
-            <mat-error *ngIf="agentForm.controls['agentCount'].hasError('required')">
+            <input #count matInput placeholder="# of Agents to Generate" formControlName="count">
+            <mat-error *ngIf="form.controls['count'].hasError('required')">
               Agent Count is <strong>required</strong>
             </mat-error>
           </mat-form-field>

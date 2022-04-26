@@ -9,7 +9,7 @@ import { WordService } from '../../services/word.service';
   styleUrls: ['./group.component.scss']
 })
 export class GroupComponent {
-  groupForm = this.fb.group({
+  form = this.fb.group({
     name: ['{{name.firstName}}_{{name.lastName}}', Validators.required],
     description: ['{{name.firstName}}_{{name.lastName}}', Validators.required],
     tags: ['{{name.firstName}}: {{name.lastName}}', Validators.required],
@@ -35,8 +35,8 @@ export class GroupComponent {
   }
 
   batchGroups() {
-    const {name, tags, description, groupCount} = this.groupForm.value;
-    const groups = new Array(groupCount)
+    const {name, tags, description, count} = this.form.value;
+    const groups = new Array(count)
       .map((_, i) => this.makeGroup(name, description,tags));
 
     return groups;

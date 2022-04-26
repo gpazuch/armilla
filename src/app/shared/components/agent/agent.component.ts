@@ -10,7 +10,7 @@ import { WordService } from '../../services/word.service';
   styleUrls: ['./agent.component.scss']
 })
 export class AgentComponent {
-  agentForm = this.fb.group({
+  form = this.fb.group({
     name: ['{{name.firstName}}_{{name.lastName}}', Validators.required],
     tags: ['{{name.firstName}}: {{name.lastName}}', Validators.required],
     count: [5, Validators.required],
@@ -19,21 +19,24 @@ export class AgentComponent {
   constructor(
       private fb: FormBuilder,
       private agent: AgentService,
-      private names: WordService,
+      private words: WordService,
   ) {
   }
 
   getHint(expr: string) {
-    return this.names.randomWord(expr);
+    return this.words.randomWord(expr);
   }
 
   makeAgent(name: string, tags: string) {
-    return {name: faker.fake(name), tags: faker.fake(tags)};
+    return {
+      name: this.words.createWord(name),
+      tags: this.words.createWord(tags),
+    };
   }
 
   batchAgents() {
-    const {name, tags, agentCount} = this.agentForm.value;
-    const agents = new Array(agentCount).map((_, i) => this.makeAgent(name, tags));
+    const {name, tags, count} = this.form.value;
+    const agents = new Array(count).map((_, i) => this.makeAgent(name, tags));
 
     return agents;
   }

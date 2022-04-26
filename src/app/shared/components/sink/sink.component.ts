@@ -9,21 +9,7 @@ import { WordService } from '../../services/word.service';
   styleUrls: ['./sink.component.scss']
 })
 export class SinkComponent {
-  addressForm = this.fb.group({
-    company: null,
-    firstName: [null, Validators.required],
-    lastName: [null, Validators.required],
-    address: [null, Validators.required],
-    address2: null,
-    city: [null, Validators.required],
-    state: [null, Validators.required],
-    postalCode: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(5)])
-    ],
-    shipping: ['free', Validators.required]
-  });
-
-  sinkForm = this.fb.group({
+  form = this.fb.group({
     name: ['{{name.firstName}}_{{name.lastName}}', Validators.required],
     description: ['{{name.firstName}}_{{name.lastName}}', Validators.required],
     tags: ['{{name.firstName}}: {{name.lastName}}', Validators.required],
@@ -32,33 +18,39 @@ export class SinkComponent {
   });
 
   backends = [
-    {name: 'Prometheus', value: 'Prometeus'},
+    {name: 'Prometheus', value: 'prometheus'},
   ];
 
   constructor(
       private fb: FormBuilder,
       private sink: SinkService,
-      private names: WordService,
+      private words: WordService,
   ) {
   }
 
   getHint(expr: string) {
-    return this.names.randomWord(expr);
+    return this.words.randomWord(expr);
   }
 
-  makeSink(name: string, description: string, backend: string, tags: string, config: string) {
-    return {name: faker.fake(name), tags: faker.fake(tags)};
+  makeSink(values: any) {
+    const {name, description, backend, tags} = values;
+    return {
+      name: this.words.createWord(name),
+      backend,
+      description: this.words.createWord(description),
+      tags: this.words.createWord(tags),
+    };
   }
 
-  batchAgents() {
-    const {name, tags, agentCount} = this.agentForm.value;
-    const agents = new Array(agentCount).map((_, i) => this.makeSink(name, tags));
+  batchAgents(values: any) {
+    const {count} = values;
+    const agents = new Array(count).map((_, i) => this.makeSink(values));
 
     return agents;
   }
 
   onSubmit(): void {
-    const agents = this.batchAgents();
-    this.agent.batchCreate(agents);
+    const agents = this.batchAgents(this.form.value);
+    this.sink.batchCreate(agents);
   }
 }
